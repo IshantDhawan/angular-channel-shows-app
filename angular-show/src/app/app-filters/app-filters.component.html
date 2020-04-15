@@ -1,0 +1,12 @@
+Filters
+<div>
+    <div *ngFor = "let item of baseObj | keyvalue" class="mainBox">
+        {{item.key | titlecase}} 
+            <div *ngFor="let val of item.value"> 
+                <label>
+                    <input type="checkbox" [attr.data-sectionvalue]="item.key" [value]="val" (change)="onChangeSelected($event)">
+                    {{val}}
+                </label>
+            </div>
+    </div>
+</div>

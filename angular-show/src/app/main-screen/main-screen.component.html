@@ -1,0 +1,33 @@
+<div class="row">
+    <div class="col-md-6">
+        <div *ngIf="filterListArr.length">
+            <div>Selected Filters</div>
+            <span *ngFor="let filters of filterListArr" style="margin: 2px;">
+                <span class="badge badge-secondary">{{filters}}</span>
+            </span>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-6">
+        Search by Name 
+        <form [formGroup]="searchForm" (ngSubmit)="onSubmit()">
+            <div class="form-group">
+                <input type="text" class="" formControlName="searchName">
+                <button type="submit" [disabled]="searchForm.invalid">Search</button>
+            </div>
+        </form>
+    </div>
+    <div class="col-md-6">
+        <br>
+        <select id="sortId" class="float-md-right" (change)="onSortOrder($event)">
+            <option value=""disabled selected>Sort By Id</option>
+            <option value="asc">Ascending</option>
+            <option value="desc">Descending</option>
+        </select>
+    </div>
+</div>
+<hr>
+<div class="row">
+    <div class="col-md-3 col-xs-6" app-list-shows *ngFor="let channel of channelList | filterPipe : filteredObj : updatedParam | searchName : findName | sort:sortId" [channelData]='channel'></div>   
+</div>
